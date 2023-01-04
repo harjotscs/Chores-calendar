@@ -43,7 +43,7 @@ const generateMonthlyCalendar = (currentDate) => {
       );
       if (i == 0) {
         console.log(
-          "Known bug if you press previous till january, the january calendar will get shifted by a Day\n INFO Logs\n"
+          "Known bug if you press previous till january, the january calendar will get shifted by a Day\n INFO Logs\n",
           "dx ",
           days,
           "mod ",
