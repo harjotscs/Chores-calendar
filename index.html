@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chores calendar</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="calendar" class="calendar">
+      <div class="month">
+        <ul>
+          <li
+            class="prev"
+            onclick="presentDate.setMonth(presentDate.getMonth() - 1) &&
+          generateMonthlyCalendar(
+            new Date(presentDate.getFullYear(), presentDate.getMonth(), 1)
+          )"
+          >
+            &#10094;
+          </li>
+          <li
+            class="next"
+            onclick="presentDate.setMonth(presentDate.getMonth() + 1) &&
+          generateMonthlyCalendar(
+            new Date(presentDate.getFullYear(), presentDate.getMonth(), 1)
+          )"
+          >
+            &#10095;
+          </li>
+          <li id="monthName">
+            Loading...<br />
+            <span id="year" style="font-size: 18px">Loading...</span>
+          </li>
+        </ul>
+      </div>
+      <ul class="weekdays">
+        <li>Mo</li>
+        <li>Tu</li>
+        <li>We</li>
+        <li>Th</li>
+        <li>Fr</li>
+        <li>Sa</li>
+        <li>Su</li>
+      </ul>
+      <ul class="days" id="days"></ul>
+    </div>
+  </body>
+  <script src="info.js"></script>
+</html>
