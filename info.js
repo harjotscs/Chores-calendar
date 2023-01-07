@@ -1,5 +1,4 @@
 const startDate = new Date("2023-01-01");
-startDate.setHours(0, 0);
 
 const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const monthNames = [
@@ -24,6 +23,8 @@ const generateMonthlyCalendar = (currentDate) => {
   <span id="year" style="font-size: 18px">${currentDate.getFullYear()}</span>`;
   const days = document.getElementById("days");
   days.innerHTML = "";
+  currentDate.setHours(0, 0, 0, 0);
+  startDate.setHours(0, 0, 0, 0);
 
   for (let i = 0; i < monthDays[currentDate.getMonth()]; i++) {
     const dayNode = document.createElement("li");
@@ -43,7 +44,6 @@ const generateMonthlyCalendar = (currentDate) => {
       );
       if (i == 0) {
         console.log(
-          "Known bug if you press previous till january, the january calendar will get shifted by a Day\n INFO Logs\n",
           "dx ",
           days,
           "mod ",
@@ -66,25 +66,10 @@ const generateMonthlyCalendar = (currentDate) => {
         startDate
       );
     }
-    // const text = `${i + 1} ${
-    //   Math.abs(startDate.getDate() - currentDate.getDate() + i) % 2 == 0
-    //     ? tennantNames[0]
-    //     : tennantNames[1]
-    // }`;
     const textnode = document.createTextNode(text);
     dayNode.appendChild(textnode);
     days.appendChild(dayNode);
   }
-  //   const dayNode = document.createElement("li");
-  //   dayNode.setAttribute("class", "days");
-  //   const textnode = document.createTextNode("Harjot");
-  //   dayNode.appendChild(textnode);
-  //   days.appendChild(dayNode);
-  //   const dayNode2 = document.createElement("li");
-  //   dayNode2.setAttribute("class", "days");
-  //   const textnode2 = document.createTextNode("Harjot S");
-  //   dayNode2.appendChild(textnode2);
-  //   days.appendChild(dayNode2);
 };
 
 const generateNextMonthlyCalendar = () => {
@@ -95,7 +80,5 @@ const generateNextMonthlyCalendar = () => {
 };
 
 let presentDate = new Date();
-// let presentDate = new Date();
-// presentDate.setHours(0, 0, 0);
 
 generateMonthlyCalendar(presentDate);
