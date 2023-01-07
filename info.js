@@ -15,6 +15,11 @@ const monthNames = [
   "November",
   "December",
 ];
+
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+
 const tennantNames = ["Harjot", "Kushagr"];
 const generateMonthlyCalendar = (currentDate) => {
   console.log(currentDate);
@@ -25,6 +30,26 @@ const generateMonthlyCalendar = (currentDate) => {
   days.innerHTML = "";
   currentDate.setHours(0, 0, 0, 0);
   startDate.setHours(0, 0, 0, 0);
+  const firstDay = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1
+  ).getDay();
+
+  const blankBlocks = firstDay ? firstDay - 1 : 6;
+  const lastDateOfPreviousMonth = daysInMonth(
+    currentDate.getMonth(),
+    currentDate.getFullYear()
+  );
+  console.log(lastDateOfPreviousMonth);
+  for (let i = 0; i < blankBlocks; i++) {
+    const dayNode = document.createElement("li");
+    dayNode.setAttribute("class", "days");
+    const text = `${lastDateOfPreviousMonth - (blankBlocks - 1) + i}`;
+    const textnode = document.createTextNode(text);
+    dayNode.appendChild(textnode);
+    days.appendChild(dayNode);
+  }
 
   for (let i = 0; i < monthDays[currentDate.getMonth()]; i++) {
     const dayNode = document.createElement("li");
@@ -58,13 +83,6 @@ const generateMonthlyCalendar = (currentDate) => {
         );
       }
       text += ` ${days % 2 == 0 ? tennantNames[0] : tennantNames[1]} `;
-    } else {
-      console.log(
-        currentDate.getTime() + i * (1000 * 60 * 60 * 24),
-        startDate.getTime(),
-        currentDate,
-        startDate
-      );
     }
     const textnode = document.createTextNode(text);
     dayNode.appendChild(textnode);
